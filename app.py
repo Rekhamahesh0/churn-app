@@ -30,9 +30,18 @@ internet_map = {"DSL": 0, "Fiber optic": 1, "No": 2}
 internet_service = internet_map[internet_service]
 
 # Feature array
-features = np.array([[gender, partner, dependents, tenure,
-                      phone_service, internet_service,
-                      monthly_charges, total_charges]])
+# Create full feature vector (20 features as model expects)
+features = np.zeros((1, 20))
+
+# Fill only known values (positions matter)
+features[0][0] = gender
+features[0][1] = partner
+features[0][2] = dependents
+features[0][3] = tenure
+features[0][4] = phone_service
+features[0][5] = internet_service
+features[0][6] = monthly_charges
+features[0][7] = total_charges
 
 # Prediction
 if st.button("Predict"):
